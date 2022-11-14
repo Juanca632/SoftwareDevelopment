@@ -3,6 +3,7 @@ from datetime import date, datetime
 from fastapi import FastAPI, Body, status
 from pydantic import BaseModel, EmailStr, Field
 from uuid import UUID
+import uuid
 import json
 
 app = FastAPI()
@@ -185,7 +186,7 @@ def post(car: Car = Body(...)):
     with open("cars.json","r+",encoding="utf-8") as f:
         results = json.loads(f.read())
         car_dict = car.dict()
-        car_dict["car_id"] = str(car_dict["car_id"])
+        car_dict["car_id"] = str(uuid.uuid4())
         car_dict["created_at"] = str(car_dict["created_at"])
         car_dict["updated_at"] = str(car_dict["updated_at"])
         car_dict["by"]["user_id"] = str(car_dict["by"]["user_id"])
