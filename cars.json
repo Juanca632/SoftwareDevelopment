@@ -1,0 +1,70 @@
+[
+    {
+        "car_id": "ff4662e4-6497-11ed-aa0d-00155d415deb",
+        "model": "string",
+        "price": 0.0,
+        "year": 0,
+        "condition": "string",
+        "type": "string",
+        "country": "string",
+        "weight": "string",
+        "seller": {
+            "user_id": "ff46653c-6497-11ed-aa0d-00155d415deb",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string",
+            "country": "string"
+        }
+    },
+    {
+        "car_id": "ffc103be-6497-11ed-aa0d-00155d415deb",
+        "model": "string",
+        "price": 0.0,
+        "year": 0,
+        "condition": "string",
+        "type": "string",
+        "country": "string",
+        "weight": "string",
+        "seller": {
+            "user_id": "ffc10526-6497-11ed-aa0d-00155d415deb",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string",
+            "country": "string"
+        }
+    },
+    {
+        "car_id": "000a4e8e-6498-11ed-aa0d-00155d415deb",
+        "model": "string",
+        "price": 0.0,
+        "year": 0,
+        "condition": "string",
+        "type": "string",
+        "country": "string",
+        "weight": "string",
+        "seller": {
+            "user_id": "000a5064-6498-11ed-aa0d-00155d415deb",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string",
+            "country": "string"
+        }
+    },
+    {
+        "car_id": "0040d198-6498-11ed-aa0d-00155d415deb",
+        "model": "string",
+        "price": 0.0,
+        "year": 0,
+        "condition": "string",
+        "type": "string",
+        "country": "string",
+        "weight": "string",
+        "seller": {
+            "user_id": "0040d38c-6498-11ed-aa0d-00155d415deb",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string",
+            "country": "string"
+        }
+    }
+]
