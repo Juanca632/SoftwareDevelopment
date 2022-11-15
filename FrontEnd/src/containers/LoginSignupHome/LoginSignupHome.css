@@ -1,0 +1,63 @@
+.div-login{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+}
+.div-login-img{
+    
+    width: 60%;
+    background-size: cover;
+    animation: galery 10s infinite alternate;
+    background-position: -50px 0;
+}
+
+@keyframes galery{
+    0%{background-image: url(https://images.pexels.com/photos/12604720/pexels-photo-12604720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);}
+    45%{background-image: url(https://images.pexels.com/photos/12604720/pexels-photo-12604720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);}
+    55%{background-image: url(https://images.pexels.com/photos/14105593/pexels-photo-14105593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);}
+    100%{background-image: url(https://images.pexels.com/photos/14105593/pexels-photo-14105593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);}
+}
+
+    
+
+.div-login-form{
+    width: 40%;
+}
+@media (max-width: 1500px) {
+    .div-login-form{
+        width: 30%;
+    }
+    .div-login-img{
+        flex: 1;
+        background-position: -150px 0;
+    }
+}
+@media (max-width: 1250px) {
+    .div-login{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .div-login-img{
+        display: none;
+    }
+    .div-login-form{
+        height: 100vh;
+        width: 100%;
+        background-image: url(https://images.pexels.com/photos/4065818/pexels-photo-4065818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+        background-size: cover;
+        background-position: center;
+        
+    }
+}
+@media (max-width: 550px){
+    .div-login-form{
+        height: 100vh;
+        width: 100%;
+        background-image: url(https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+        background-size: cover;
+        background-position: center;
+        
+    }
+}

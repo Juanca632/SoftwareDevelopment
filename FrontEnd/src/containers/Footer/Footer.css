@@ -1,0 +1,26 @@
+.Footer{
+    margin-top: auto;
+    height: 120px;
+    width: 100%;
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    color: var(--white);
+}
+h6, p{
+    padding: 0;
+    margin: 0;
+}
+span {
+    color: var(--orange);
+}
+h6{
+    margin-bottom: 10px;
+}
+@media (max-width: 640px) {
+	.Footer{
+        height: 100px;
+    }
+}

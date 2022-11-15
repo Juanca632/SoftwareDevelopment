@@ -1,0 +1,14 @@
+.navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+.navbar-brand{
+    color: var(--orange);
+}
+.navbar-brand:hover{
+    color: var(--orange) !important;
+}
+.header-home{
+    color: var(--orange) !important;
+}
