@@ -20,102 +20,68 @@ class UserLogin(UserBase):
 class User(UserBase):
     first_name: str = Field(..., min_length=1, max_length=50)
     last_name: str = Field(..., min_length=1, max_length=50)
-    birth_day: Optional[date] = Field(default=None)
+    country: str = Field(...)
 
 class UserRegister(User):
     password: str = Field(..., min_length=8, max_length=64)
 
 class Car(BaseModel):
     car_id: UUID = Field(...)
-    content: str = Field(..., min_length=1, max_length=256)
-    created_at: datetime = Field(default=datetime.now())
-    updated_at: Optional[datetime] = Field(default=None)
-    by: User = Field(...)
-
-
-
-
-class Vehiculo(BaseModel):
-
-    vehiculo_id: UUID
-    uso: str           #(nuevo, usado)
-    tipo: str          #(ligero, pesado, especiales, agricola, otros)
-    origen: str        #(nacional, internacional)
-    costo_vehiculo: float
-    
-class Persona(BaseModel):
-
-    first_name: str 
-    last_name: str
-    persona_id: UUID
-    
-class Cliente(Persona):
-    direccion_cliente: str
-
-class Vendedor(Persona):
-    direccion_vendedor: str
-
-class Envio(BaseModel):
-    cliente: Cliente
-    vendedor: Vendedor
-    costo_envio: float
-    
-class Compra(BaseModel):
-
-    compra_id: UUID
-    comprador: Cliente
-    envio: Envio 
-    total_compra: float
-
-class Facturar(BaseModel):
-    compra: Compra
+    model: str = Field(..., min_length=1, max_length=256)
+    price: float = Field(...)
+    year: int = Field(...)
+    condition: str = Field(...)
+    type: str = Field(...)
+    country: str = Field(...)
+    weight: str = Field(...)
+    seller: User = Field(...)
 
 
 #LOGING/SIGN UP PAGE
 
-@app.post(
-    path="/signup",
-    response_model=User,
-    status_code=status.HTTP_201_CREATED,
-    summary="Register a User",
-    tags = ["Users"]
-    )
-def signup(user: UserRegister = Body(...)):
-    """
-    SIGN UP
+# @app.post(
+#     path="/signup",
+#     response_model=User,
+#     status_code=status.HTTP_201_CREATED,
+#     summary="Register a User",
+#     tags = ["Users"]
+#     )
+# def signup(user: UserRegister = Body(...)):
+#     """
+#     SIGN UP
 
-    This path operation register a user on the app
+#     This path operation register a user on the app
 
-    Parameters: 
-        - Request body parameters
-            - user: UserRegister
+#     Parameters: 
+#         - Request body parameters
+#             - user: UserRegister
     
-    Returns a json with the basic user information:
-        - user_id: UUID
-        - email: Emailstr
-        - first_name: str
-        - last_name: str
-        - birth_date: date
-    """
-    with open("users.json","r+",encoding="utf-8") as f:
-        results = json.loads(f.read())
-        user_dict = user.dict()
-        user_dict["user_id"] = str(user_dict["user_id"])
-        user_dict["birth_day"] = str(user_dict["birth_day"])
-        results.append(user_dict)
-        f.seek(0)
-        f.write(json.dumps(results))
-        return user
+#     Returns a json with the basic user information:
+#         - user_id: UUID
+#         - email: Emailstr
+#         - first_name: str
+#         - last_name: str
+#         - birth_date: date
+#     """
+#     with open("users.json","r+",encoding="utf-8") as f:
+#         results = json.loads(f.read())
+#         user_dict = user.dict()
+#         user_dict["user_id"] = str(user_dict["user_id"])
+#         user_dict["birth_day"] = str(user_dict["birth_day"])
+#         results.append(user_dict)
+#         f.seek(0)
+#         f.write(json.dumps(results))
+#         return user
 
-@app.post(
-    path="/login",
-    response_model=User,
-    status_code=status.HTTP_200_OK,
-    summary="Login a User",
-    tags=["Users"]
-    )
-def login():
-    pass
+# @app.post(
+#     path="/login",
+#     response_model=User,
+#     status_code=status.HTTP_200_OK,
+#     summary="Login a User",
+#     tags=["Users"]
+#     )
+# def login():
+#     pass
 
 #HOME PAGE
 
@@ -148,15 +114,15 @@ def home():
 
 #SELLER MODE
 
-@app.get(
-    path="/sell",
-    response_model=List[Car],
-    status_code=status.HTTP_200_OK,
-    summary="Show my Cars",
-    tags=["Cars"]
-)
-def myCars():
-    pass
+# @app.get(
+#     path="/sell",
+#     response_model=List[Car],
+#     status_code=status.HTTP_200_OK,
+#     summary="Show my Cars",
+#     tags=["Cars"]
+# )
+# def myCars():
+#     pass
 
 @app.post(
     path="/post",
@@ -186,36 +152,40 @@ def post(car: Car = Body(...)):
     with open("cars.json","r+",encoding="utf-8") as f:
         results = json.loads(f.read())
         car_dict = car.dict()
-        car_dict["car_id"] = str(uuid.uuid4())
-        car_dict["created_at"] = str(car_dict["created_at"])
-        car_dict["updated_at"] = str(car_dict["updated_at"])
-        car_dict["by"]["user_id"] = str(car_dict["by"]["user_id"])
-        car_dict["by"]["birth_day"] = str(car_dict["by"]["birth_day"])
+        car_dict["car_id"] = str(uuid.uuid1())
+        car_dict["model"] = str(car_dict["model"])
+        car_dict["price"] = float(car_dict["price"])
+        car_dict["year"] = int(car_dict["year"])
+        car_dict["condition"] = str(car_dict["condition"])
+        car_dict["type"] = str(car_dict["type"])
+        car_dict["country"] = str(car_dict["country"])
+        car_dict["weight"] = str(car_dict["weight"])
+        car_dict["seller"]["user_id"] = str(uuid.uuid1())
 
         results.append(car_dict)
         f.seek(0)
         f.write(json.dumps(results))
-        return car
+        return car_dict
 
-@app.put(
-    path="/{Car_id}/update",
-    response_model=Car,
-    status_code=status.HTTP_200_OK,
-    summary="Update a Car",
-    tags=["Cars"]
-)
-def updateCar():
-    pass
+# @app.put(
+#     path="/{Car_id}/update",
+#     response_model=Car,
+#     status_code=status.HTTP_200_OK,
+#     summary="Update a Car",
+#     tags=["Cars"]
+# )
+# def updateCar():
+#     pass
 
-@app.delete(
-    path="/{Car_id}/delete",
-    response_model=Car,
-    status_code=status.HTTP_200_OK,
-    summary="Delete a Car",
-    tags=["Cars"]
-)
-def deleteCar():
-    pass
+# @app.delete(
+#     path="/{Car_id}/delete",
+#     response_model=Car,
+#     status_code=status.HTTP_200_OK,
+#     summary="Delete a Car",
+#     tags=["Cars"]
+# )
+# def deleteCar():
+#     pass
 
 #BACKEND
 #BACKEND
