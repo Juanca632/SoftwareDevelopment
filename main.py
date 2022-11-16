@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+
 origins = [
     "http://localhost:3000"
 ]
@@ -22,20 +23,19 @@ app.add_middleware(
 
 #MODELS
 
-class UserBase(BaseModel):
-    user_id: UUID = Field(...)
-    email: EmailStr = Field(...)
+# class UserBase(BaseModel):
+#     user_id: UUID = Field(...)
+#     email: EmailStr = Field(...)
 
-class UserLogin(UserBase):
-    password: str = Field(..., min_length=8, max_length=64)
+# class UserLogin(UserBase):
+#     password: str = Field(..., min_length=8, max_length=64)
 
-class User(UserBase):
-    first_name: str = Field(..., min_length=1, max_length=50)
-    last_name: str = Field(..., min_length=1, max_length=50)
-    country: str = Field(...)
+# class User(UserBase):
+#     first_name: str = Field(..., min_length=1, max_length=50)
+#     last_name: str = Field(..., min_length=1, max_length=50)
 
-class UserRegister(User):
-    password: str = Field(..., min_length=8, max_length=64)
+# class UserRegister(User):
+#     password: str = Field(..., min_length=8, max_length=64)
 
 class Car(BaseModel):
     car_id: UUID = Field(...)
@@ -47,7 +47,6 @@ class Car(BaseModel):
     type: str = Field(...)
     country: str = Field(...)
     weight: str = Field(...)
-    seller: User = Field(...)
 
 
 #LOGING/SIGN UP PAGE
@@ -174,7 +173,12 @@ def post(car: Car = Body(...)):
         car_dict["type"] = str(car_dict["type"])
         car_dict["country"] = str(car_dict["country"])
         car_dict["weight"] = str(car_dict["weight"])
-        car_dict["seller"]["user_id"] = str(uuid.uuid1())
+        # car_dict["seller"]["user_id"] = str(uuid.uuid1())
+        # car_dict["seller"]["email"] = str(car_dict["seller"]["email"])
+        # car_dict["seller"]["first_name"] = str(car_dict["seller"]["first_name"])
+        # car_dict["seller"]["last_name"] = str(car_dict["seller"]["last_name"])
+        
+
 
         results.append(car_dict)
         f.seek(0)
