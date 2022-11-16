@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Login } from '../Pages/Login/Login';
 import { Signup } from '../Pages/Signup/Signup';
 import { Home } from '../Pages/Home/Home';
-
+import { NotFound } from '../Pages/NotFound/NotFound';
+import { CarDetails } from '../Pages/CarDetails/CarDetails';
 
 const App = () => {
 	return (
@@ -12,9 +13,10 @@ const App = () => {
         <Layout>
           <Routes>
             <Route exact path="/" element={<Home/>} /> 
-            <Route exact path="/" element={<About/>} /> 
             <Route exact path="/login" element={<Login/>} /> 
             <Route exact path="/signup" element={<Signup/>} /> 
+            <Route exact path="/car-details" element={<CarDetails/>} /> 
+            <Route exact path="*" element={<NotFound/>} /> 
           </Routes>
         </Layout>
       </BrowserRouter>

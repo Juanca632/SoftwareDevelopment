@@ -63,7 +63,7 @@ const ProductList = () => {
 			<h2>FIND YOUR CAR</h2>
 			<SearchBar/>
 			<div className="ProductList ">
-				{cars.map(car => (
+				{products.map(car => (
 					<ProductItem car={car} key={car.model} />
 				))}
 				

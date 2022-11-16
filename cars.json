@@ -1,1 +1,56 @@
-[]
+[
+    {
+        "car_id": "dcfa0bd6-6501-11ed-8e08-00155de35e8f",
+        "model": "MERCEDEZ BENZ R3",
+        "img": "https://i.postimg.cc/cHrjFXqC/car-rent-1.png",
+        "price": 500.0,
+        "year": 0,
+        "condition": "string",
+        "type": "string",
+        "country": "string",
+        "weight": "string",
+        "seller": {
+            "user_id": "dcfa0e9c-6501-11ed-8e08-00155de35e8f",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string",
+            "country": "string"
+        }
+    },
+    {
+        "car_id": "eef2a154-6501-11ed-8e08-00155de35e8f",
+        "model": "BMW",
+        "img": "https://i.postimg.cc/VNYPWqL0/car-rent-2.png",
+        "price": 500.0,
+        "year": 0,
+        "condition": "string",
+        "type": "string",
+        "country": "string",
+        "weight": "string",
+        "seller": {
+            "user_id": "eef2a370-6501-11ed-8e08-00155de35e8f",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string",
+            "country": "string"
+        }
+    },
+    {
+        "car_id": "fa2f3df2-6501-11ed-8e08-00155de35e8f",
+        "model": "AUDI",
+        "img": "https://i.postimg.cc/5yQh2ppT/car-rent-3.png",
+        "price": 500.0,
+        "year": 0,
+        "condition": "string",
+        "type": "string",
+        "country": "string",
+        "weight": "string",
+        "seller": {
+            "user_id": "fa2f40b8-6501-11ed-8e08-00155de35e8f",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string",
+            "country": "string"
+        }
+    }
+]

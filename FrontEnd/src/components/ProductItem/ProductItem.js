@@ -4,16 +4,17 @@ import "./ProductItem.css";
 
 
 const ProductItem = ({ car }) => {
+
     return (
         <div className="ProductItem">
 			<div className='div-img'>
-				<img src={car.img} alt={car.title}/>	
+				<img src={car.img} alt={car.model}/>	
 			</div>
 			<div className="product-info">
 				<div className='product-info-details'>
-					<p>{car.title}</p>
+					<p>{car.model}</p>
 				</div>
-				<a className='price'>${car.price}</a>
+				<a href='/car-details' className='price'>${car.price}</a>
 			</div>
 		</div>
     );

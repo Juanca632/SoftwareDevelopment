@@ -5,8 +5,20 @@ from pydantic import BaseModel, EmailStr, Field
 from uuid import UUID
 import uuid
 import json
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000"
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #MODELS
 
@@ -28,6 +40,7 @@ class UserRegister(User):
 class Car(BaseModel):
     car_id: UUID = Field(...)
     model: str = Field(..., min_length=1, max_length=256)
+    img: str = Field(...)
     price: float = Field(...)
     year: int = Field(...)
     condition: str = Field(...)
@@ -154,6 +167,7 @@ def post(car: Car = Body(...)):
         car_dict = car.dict()
         car_dict["car_id"] = str(uuid.uuid1())
         car_dict["model"] = str(car_dict["model"])
+        car_dict["img"] = str(car_dict["img"])
         car_dict["price"] = float(car_dict["price"])
         car_dict["year"] = int(car_dict["year"])
         car_dict["condition"] = str(car_dict["condition"])
