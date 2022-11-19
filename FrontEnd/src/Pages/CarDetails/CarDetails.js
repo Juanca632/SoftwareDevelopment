@@ -43,6 +43,8 @@ const CarDetails = () => {
                     <span className='span-details'>{carsDetails.country}</span>
                     <span className='span-details'> | </span>
                     <span className='span-details'>{carsDetails.weight}</span>
+                    <span className='span-details'> | </span>
+                    <span className='span-details'>{carsDetails.condition}</span>
                 </div>
                 <div className='details-purchase'>
                     <p className='price-purchase'>${new Intl.NumberFormat("en-EN").format(carsDetails.price)}</p>

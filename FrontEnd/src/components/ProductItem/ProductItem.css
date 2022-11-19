@@ -40,7 +40,7 @@
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
-.product-info-details p{
+.product-info-details .car-model{
 	font-weight: bold;
 	font-size: 24px;
 	text-align: center;
@@ -71,7 +71,9 @@
     color: var(--white);
     
 }
-
+.car-info-categories{
+	font-size: var(--sm);
+}
 
 @media (max-width: 640px) {
 	.cards-container {

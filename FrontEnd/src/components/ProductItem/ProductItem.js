@@ -13,8 +13,10 @@ const ProductItem = ({ car }) => {
 			</div>
 			<div className="product-info">
 				<div className='product-info-details'>
-					<p>{car.model}</p>
+					<p className='car-model'>{car.model}</p>
+					<p className='car-info-categories'>{`${car.year} | ${car.type} | ${car.country} | ${car.weight} | ${car.condition}`}</p>
 				</div>
+	
 				<Link to={`/cars/${car.car_id}`} className='price'>${new Intl.NumberFormat("en-EN").format(car.price)}</Link>
 			</div>
 		</div>

@@ -5,7 +5,7 @@ import img2 from "../../assets/img/carousel-2.jpg";
 
 const Banner = () => {
     return (   
-        <div className='Banner'>
+        <div className='Banner' id='Banner'>
           <div className='slider'>
             <ul>
               <li><img src={img1}/></li>

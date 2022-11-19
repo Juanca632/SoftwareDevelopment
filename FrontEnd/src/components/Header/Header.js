@@ -35,7 +35,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto">
-              <a className="header-home nav-link active" aria-current="page" href="/">
+              <a className="header-home nav-link active" aria-current="page" href="/#Banner">
                 Home
               </a>
               <a className="nav-link" href="/#main-container">
