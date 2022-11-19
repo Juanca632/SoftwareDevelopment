@@ -1,6 +1,99 @@
 .CarDetails{
     height: 100vh;
+    padding-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Quicksand', sans-serif;
+}
+.details-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55%;
+    
+
+}
+.carousel-details{
+    width: 90%;
+}
+
+.details-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    
+    
+}
+.model-car{
+	font-size: 35px;
+    font-weight: bold;
+	color: var(--dark);
+}
+.span-details{
+    font-size: var(--md);
+    color: var(--dark);
+}
+.details-purchase{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 2em;
+    
+}
+.price-purchase{
+    color: var(--dark);
+    font-weight: 300;
+    font-size: 55px;
+}
+.purchase-contact{
+    width: 50%;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+}
+.purchase-button {
+	background-color: var(--orange);
+	border-radius: 8px;
+	border: none;
+	color: var(--white);
+	width: 40%;
+	cursor: pointer;
+	font-size: var(--md);
+	font-weight: bold;
+	height: 50px;
+    transition: all .5s;
+
+}
+
+.purchase-button:hover{
+    transform: scale(110%);
+}
+.contact-button {
+    box-sizing: border-box;
+    border: 1px solid var(--orange);
+	background-color: var(--white);
+    color: var(--orange);
+	border-radius: 8px;
+	width: 40%;
+	cursor: pointer;
+	font-size: var(--md);
+	font-weight: bold;
+	height: 50px;
+    transition: all .5s;
+}
+.contact-button:hover{
+    transform: scale(110%);
+}
+.purchase-problem{
+    margin-top: 1.5em;
+    color: var(--very-light-pink);
+}
+.purchase-problem span{
+    cursor: pointer;
+    color: var(--orange);
 }

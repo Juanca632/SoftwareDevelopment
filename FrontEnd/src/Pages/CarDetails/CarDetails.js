@@ -1,10 +1,66 @@
 import React from 'react';
-import "./CarDetails.css"
+import { useParams } from 'react-router-dom';
+import "./CarDetails.css";
+import { cars } from '../../containers/ProductList/ProductList';
+
 
 const CarDetails = () => {
+
+    const { slug } = useParams();
+
+    const carsDetails = cars.find(car => car.car_id === slug );
+
     return (
         <div className='CarDetails'>
-            <p>CAR DETAILSSSSS</p>
+            <div className='details-img'>
+                <div id="carouselExampleIndicators" className="carousel slide carousel-details" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                    <img src={carsDetails.img1} className="d-block w-100" alt="car-carousel-1"/>
+                    </div>
+                    <div className="carousel-item">
+                    <img src={carsDetails.img2} className="d-block w-100" alt="car-carousel-2"/>
+                    </div>
+                    <div className="carousel-item">
+                    <img src={carsDetails.img3} className="d-block w-100" alt="car-carousel-3"/>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <div className='details-content'>
+                <h2 className='model-car'>{carsDetails.model}</h2>
+                <div className='div-info-details'>
+                    <span className='span-details'>{carsDetails.year}</span>
+                    <span className='span-details'> | </span>
+                    <span className='span-details'>{carsDetails.type}</span>
+                    <span className='span-details'> | </span>
+                    <span className='span-details'>{carsDetails.country}</span>
+                    <span className='span-details'> | </span>
+                    <span className='span-details'>{carsDetails.weight}</span>
+                </div>
+                <div className='details-purchase'>
+                    <p className='price-purchase'>${carsDetails.price}</p>
+                    <div className='purchase-contact'>
+                    <input
+                        type="submit"
+                        value="Purchase"
+                        className="purchase-button"
+                    />
+                    <input
+                        type="submit"
+                        value="Contact"
+                        className="contact-button"
+                    />
+                    </div>
+                    <p className='purchase-problem'>¿Tienes un problema? <span>Avisanos</span></p>
+                </div>
+            </div>
         </div>
 
     );

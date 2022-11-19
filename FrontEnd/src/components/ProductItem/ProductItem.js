@@ -1,5 +1,6 @@
 import React from 'react';
 import "./ProductItem.css";
+import { Link } from "react-router-dom"
 
 
 
@@ -14,7 +15,7 @@ const ProductItem = ({ car }) => {
 				<div className='product-info-details'>
 					<p>{car.model}</p>
 				</div>
-				<a href='/car-details' className='price'>${car.price}</a>
+				<Link to={`/cars/${car.car_id}`} className='price'>${car.price}</Link>
 			</div>
 		</div>
     );

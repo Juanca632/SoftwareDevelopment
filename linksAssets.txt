@@ -4,3 +4,112 @@ https://i.postimg.cc/5yQh2ppT/car-rent-3.png
 https://i.postimg.cc/8CC6mYj6/car-rent-4.png
 https://i.postimg.cc/xCwNYTgv/car-rent-5.png
 https://i.postimg.cc/xTR8pRry/car-rent-6.png
+
+"img1": "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+"img2": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+"img3": "https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+
+[
+    {
+        "car_id": "74329a82-65e2-11ed-af49-00155d014f68",
+        "model": "MERCEDEZ BENZ R3",
+        "img": "https://i.postimg.cc/cHrjFXqC/car-rent-1.png",
+        "img1": "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "img2": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "img3": "https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "7bd72596-65e2-11ed-af49-00155d014f68",
+        "model": "Ferrari 250 GTO",
+        "img": "https://i.postimg.cc/VNYPWqL0/car-rent-2.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "8195c5fa-65e2-11ed-af49-00155d014f68",
+        "model": "Porsche 550 Spyder",
+        "img": "https://i.postimg.cc/5yQh2ppT/car-rent-3.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "86640de4-65e2-11ed-af49-00155d014f68",
+        "model": "Porsche 959",
+        "img": "https://i.postimg.cc/8CC6mYj6/car-rent-4.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "8ac8f886-65e2-11ed-af49-00155d014f68",
+        "model": "Jaguar E-Type",
+        "img": "https://i.postimg.cc/xCwNYTgv/car-rent-5.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "91d85392-65e2-11ed-af49-00155d014f68",
+        "model": "Chevrolet Corvette",
+        "img": "https://i.postimg.cc/xTR8pRry/car-rent-6.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "bbdf8688-65e2-11ed-99a1-00155d014f68",
+        "model": "MERCEDEZ BENZ R3",
+        "img": "https://i.postimg.cc/cHrjFXqC/car-rent-1.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "c35640be-65e2-11ed-99a1-00155d014f68",
+        "model": "MERCEDEZ BENZ R3",
+        "img": "https://i.postimg.cc/VNYPWqL0/car-rent-2.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    },
+    {
+        "car_id": "c9db7c10-65e2-11ed-99a1-00155d014f68",
+        "model": "MERCEDEZ BENZ R3",
+        "img": "https://i.postimg.cc/5yQh2ppT/car-rent-3.png",
+        "price": 500000.0,
+        "year": 2018,
+        "condition": "New",
+        "type": "Sport Cars",
+        "country": "Germany",
+        "weight": "Light"
+    }
+]
