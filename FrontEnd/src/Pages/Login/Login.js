@@ -1,11 +1,43 @@
 import React, {useRef}  from 'react';
 import "./Login.css";
 import { LoginSignupHome } from '../../containers/LoginSignupHome/LoginSignupHome';
+import { useGetProducts } from '../../hooks/useGetProducts';
+import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
+
+const API = "http://localhost:8000/users";
+const cookies = new Cookies();
+
+let users;
 
 const Login = () => {
 
     const form = useRef(null);
 
+    users = useGetProducts(API);
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const formData = new FormData(form.current);
+      const data = {
+        email: formData.get("email"),
+        password: formData.get("password")
+      }
+      const userData = users.find(user => (user.email === data.email) && (user.password === data.password));
+      if(userData == undefined){
+        alert("There was an Error, try again");
+      }
+      else{
+        cookies.set("id", userData.user_id, {path: "/"});
+        cookies.set("name", userData.name, {path: "/"});
+        cookies.set("email", userData.email, {path: "/"});
+        alert(`You have succesfully logged in, welcome ${userData.name}`);
+        window.location.href="/";
+      }
+    }
+
+    
+    
     return (
         <LoginSignupHome>
           <div className="Login">
@@ -32,15 +64,14 @@ const Login = () => {
                 />
                 <button
                   className="primary-button login-button"
-                  
-                >
+                  onClick={handleSubmit}>
                   Log in
                 </button>
-                <a href="/" className='forgot'>Forgot my password</a>
+                <Link to="/signup" className='forgot'>Forgot my password</Link>
               </form>
-              <button className="secondary-button signup-button">
+              <Link to="/signup" className="secondary-button signup-button">
                 Sign up
-              </button>
+              </Link>
             </div>
           </div>
           </LoginSignupHome>
@@ -48,4 +79,4 @@ const Login = () => {
     );
 }
 
-export { Login };
+export { Login, users };

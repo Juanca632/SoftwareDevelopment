@@ -58,6 +58,10 @@
 	height: 50px;
 }
 .secondary-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
 	background-color: var(--white);
 	border-radius: 8px;
 	border: 1px solid var(--dark);
@@ -67,6 +71,9 @@
 	font-size: var(--md);
 	font-weight: bold;
 	height: 50px;
+}
+.secondary-button:hover{
+	color: var(--dark);
 }
 .login-button {
 	margin-top: 14px;

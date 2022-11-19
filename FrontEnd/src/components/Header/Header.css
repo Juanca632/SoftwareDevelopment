@@ -12,3 +12,13 @@
 .header-home{
     color: var(--orange) !important;
 }
+.div-icon-profil{
+    display: flex;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    
+}
+.icon-profil{
+    width: 40px;
+}

@@ -45,7 +45,7 @@ const CarDetails = () => {
                     <span className='span-details'>{carsDetails.weight}</span>
                 </div>
                 <div className='details-purchase'>
-                    <p className='price-purchase'>${carsDetails.price}</p>
+                    <p className='price-purchase'>${new Intl.NumberFormat("en-EN").format(carsDetails.price)}</p>
                     <div className='purchase-contact'>
                     <input
                         type="submit"

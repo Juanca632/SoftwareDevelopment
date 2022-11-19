@@ -6,6 +6,7 @@ import { Signup } from '../Pages/Signup/Signup';
 import { Home } from '../Pages/Home/Home';
 import { NotFound } from '../Pages/NotFound/NotFound';
 import { CarDetails } from '../Pages/CarDetails/CarDetails';
+import { MyAccount } from '../Pages/MyAccount/MyAccount';
 
 const App = () => {
 	return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route exact path="/login" element={<Login/>} /> 
             <Route exact path="/signup" element={<Signup/>} /> 
             <Route exact path="/cars/:slug" element={<CarDetails/>} /> 
+            <Route exact path="/my-account/:slug" element={<MyAccount/>} /> 
             <Route exact path="*" element={<NotFound/>} /> 
           </Routes>
         </Layout>

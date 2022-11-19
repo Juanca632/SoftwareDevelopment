@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Header.css";
+import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
+
+const cookies = new Cookies();
 
 const Header = () => {
+
+
+    const [toggle, setToggle] = useState(true);
+    const [toggleAccount, setToggleAccount] = useState(false);
+    // if(!(cookies.get("id") === undefined)){
+    //   setToggle(!toggle);
+    //   setToggleAccount(!toggleAccount);
+    //   console.log("HOLAA");
+    // }
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
@@ -27,15 +41,22 @@ const Header = () => {
               <a className="nav-link" href="/#main-container">
                 Shop
               </a>
-              <a className="nav-link" href="/login">
+              {(cookies.get("id") === undefined)  && <a className="nav-link" href="/login">
                 Login
-              </a>
-              <a className="nav-link" href="/signup">
+              </a>}
+              {(cookies.get("id") === undefined)  && <a className="nav-link" href="/signup">
                 Sign Up
-              </a>
+              </a>}
+              {!(cookies.get("id") === undefined) && 
+              <div className='div-icon-profil'>
+                <Link className="nav-link" to={`/my-account/${cookies.get("id")}`}>{cookies.get("email")}</Link>
+                <img className='icon-profil' src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png"/>
+              </div>
+              }
             </div>
           </div>
         </div>
+        
       </nav>
     );
 }

@@ -23,19 +23,18 @@ app.add_middleware(
 
 #MODELS
 
-# class UserBase(BaseModel):
-#     user_id: UUID = Field(...)
-#     email: EmailStr = Field(...)
+class UserBase(BaseModel):
+    user_id: UUID = Field(...)
+    email: EmailStr = Field(...)
 
-# class UserLogin(UserBase):
-#     password: str = Field(..., min_length=8, max_length=64)
+class UserLogin(UserBase):
+    password: str = Field(..., min_length=8, max_length=64)
 
-# class User(UserBase):
-#     first_name: str = Field(..., min_length=1, max_length=50)
-#     last_name: str = Field(..., min_length=1, max_length=50)
+class User(UserBase):
+    name: str = Field(...)
 
-# class UserRegister(User):
-#     password: str = Field(..., min_length=8, max_length=64)
+class UserRegister(User):
+    password: str = Field(..., min_length=8, max_length=64)
 
 class Car(BaseModel):
     car_id: UUID = Field(...)
@@ -54,49 +53,55 @@ class Car(BaseModel):
 
 #LOGING/SIGN UP PAGE
 
-# @app.post(
-#     path="/signup",
-#     response_model=User,
-#     status_code=status.HTTP_201_CREATED,
-#     summary="Register a User",
-#     tags = ["Users"]
-#     )
-# def signup(user: UserRegister = Body(...)):
-#     """
-#     SIGN UP
+@app.post(
+    path="/signup",
+    response_model=UserRegister,
+    status_code=status.HTTP_201_CREATED,
+    summary="Register a User",
+    tags = ["Users"]
+    )
+def signup(user: UserRegister = Body(...)):
+    """
+    SIGN UP
 
-#     This path operation register a user on the app
+    This path operation register a user on the app
 
-#     Parameters: 
-#         - Request body parameters
-#             - user: UserRegister
+    Parameters: 
+        - Request body parameters
+            - user: UserRegister
     
-#     Returns a json with the basic user information:
-#         - user_id: UUID
-#         - email: Emailstr
-#         - first_name: str
-#         - last_name: str
-#         - birth_date: date
-#     """
-#     with open("users.json","r+",encoding="utf-8") as f:
-#         results = json.loads(f.read())
-#         user_dict = user.dict()
-#         user_dict["user_id"] = str(user_dict["user_id"])
-#         user_dict["birth_day"] = str(user_dict["birth_day"])
-#         results.append(user_dict)
-#         f.seek(0)
-#         f.write(json.dumps(results))
-#         return user
+    Returns a json with the basic user information:
+        - user_id: UUID
+        - email: Emailstr
+        - first_name: str
+        - last_name: str
+        - birth_date: date
+    """
+    with open("users.json","r+",encoding="utf-8") as f:
+        results = json.loads(f.read())
 
-# @app.post(
-#     path="/login",
-#     response_model=User,
-#     status_code=status.HTTP_200_OK,
-#     summary="Login a User",
-#     tags=["Users"]
-#     )
-# def login():
-#     pass
+        user_dict = user.dict()
+        user_dict["user_id"] = str(uuid.uuid1())
+        user_dict["email"] = str(user_dict["email"])
+        user_dict["name"] = str(user_dict["name"])
+        user_dict["password"] = str(user_dict["password"])
+
+        results.append(user_dict)
+        f.seek(0)
+        f.write(json.dumps(results))
+        return user_dict
+
+@app.get(
+    path="/users",
+    response_model=List[UserRegister],
+    status_code=status.HTTP_200_OK,
+    summary="Login a User",
+    tags=["Users"]
+    )
+def login():
+    with open("users.json","r",encoding="utf-8") as f:
+        results = json.loads(f.read())
+        return results
 
 #HOME PAGE
 

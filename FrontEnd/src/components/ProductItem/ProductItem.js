@@ -15,7 +15,7 @@ const ProductItem = ({ car }) => {
 				<div className='product-info-details'>
 					<p>{car.model}</p>
 				</div>
-				<Link to={`/cars/${car.car_id}`} className='price'>${car.price}</Link>
+				<Link to={`/cars/${car.car_id}`} className='price'>${new Intl.NumberFormat("en-EN").format(car.price)}</Link>
 			</div>
 		</div>
     );
