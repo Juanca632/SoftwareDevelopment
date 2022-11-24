@@ -46,6 +46,7 @@ const CarDetails = () => {
                     <span className='span-details'> | </span>
                     <span className='span-details'>{carsDetails.condition}</span>
                 </div>
+                <h6>Seller: {carsDetails.seller.name}</h6>
                 <div className='details-purchase'>
                     <p className='price-purchase'>${new Intl.NumberFormat("en-EN").format(carsDetails.price)}</p>
                     <div className='purchase-contact'>
@@ -60,7 +61,7 @@ const CarDetails = () => {
                         className="contact-button"
                     />
                     </div>
-                    <p className='purchase-problem'>¿Tienes un problema? <span>Avisanos</span></p>
+                    <p className='purchase-problem'>Have a problem? <span>Tell us</span></p>
                 </div>
             </div>
         </div>

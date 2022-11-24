@@ -49,7 +49,7 @@ const Header = () => {
               </a>}
               {!(cookies.get("id") === undefined) && 
               <div className='div-icon-profil'>
-                <Link className="nav-link" to={`/my-account/${cookies.get("id")}`}>{cookies.get("email")}</Link>
+                <Link className="nav-link" to={`/my-account/general/${cookies.get("id")}`}>{cookies.get("email")}</Link>
                 <img className='icon-profil' src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png"/>
               </div>
               }

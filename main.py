@@ -34,7 +34,7 @@ class User(UserBase):
     name: str = Field(...)
 
 class UserRegister(User):
-    password: str = Field(..., min_length=8, max_length=64)
+    password: str = Field(...)
 
 class Car(BaseModel):
     car_id: UUID = Field(...)
@@ -49,6 +49,7 @@ class Car(BaseModel):
     type: str = Field(...)
     country: str = Field(...)
     weight: str = Field(...)
+    seller: User = Field(...)
 
 
 #LOGING/SIGN UP PAGE
@@ -175,19 +176,19 @@ def post(car: Car = Body(...)):
         car_dict["car_id"] = str(uuid.uuid1())
         car_dict["model"] = str(car_dict["model"])
         car_dict["img"] = str(car_dict["img"])
-        car_dict["img1"] = str(car_dict["img1"])
-        car_dict["img2"] = str(car_dict["img2"])
-        car_dict["img3"] = str(car_dict["img3"])
+        car_dict["img1"] = "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        car_dict["img2"] = "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        car_dict["img3"] = "https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         car_dict["price"] = float(car_dict["price"])
         car_dict["year"] = int(car_dict["year"])
         car_dict["condition"] = str(car_dict["condition"])
         car_dict["type"] = str(car_dict["type"])
         car_dict["country"] = str(car_dict["country"])
         car_dict["weight"] = str(car_dict["weight"])
-        # car_dict["seller"]["user_id"] = str(uuid.uuid1())
-        # car_dict["seller"]["email"] = str(car_dict["seller"]["email"])
-        # car_dict["seller"]["first_name"] = str(car_dict["seller"]["first_name"])
-        # car_dict["seller"]["last_name"] = str(car_dict["seller"]["last_name"])
+        car_dict["seller"]["user_id"] = str(car_dict["seller"]["user_id"])
+        car_dict["seller"]["email"] = str(car_dict["seller"]["email"])
+        car_dict["seller"]["name"] = str(car_dict["seller"]["name"])
+        
         
 
 
