@@ -41,6 +41,7 @@
 }
 .settings-content-info p{
     font-size: 20px;
+    margin: 10px;
 }
 .settings-content-info button{
     display: flex;

@@ -1,32 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./SearchBar.css";
 
 
-const SearchBar = () => {
+const SearchBar = ({ searchWeight, setSearchWeight, searchCountry, setSearchCountry, searchType, setSearchType, searchCondition, setSearchCondition }) => {
+
+    const onSearchWeight = (event) => {
+        setSearchWeight(event.target.value);
+    }
+    const onSearchCountry = (event) => {
+        setSearchCountry(event.target.value);
+    }
+    const onSearchType = (event) => {
+        setSearchType(event.target.value)
+    }
+    const onSearchCondition = (event) => {
+        setSearchCondition(event.target.value);
+    }
+
+
     return (
         <div className='Search-bar my-5'>
-            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"}>
+            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"} onChange = {onSearchWeight}>
                 <option value={"DEFAULT"}>Weight</option>
-                <option value="1">Light</option>
-                <option value="2">Heavy</option>
+                <option value="Light">Light</option>
+                <option value="Heavy">Heavy</option>
             
             </select>
-            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"}>
+            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"} onChange = {onSearchCountry}>
                 <option value={"DEFAULT"}>Country</option>
-                <option value="1">Germany</option>
-                <option value="2">Italy</option>
-                <option value="3">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Italy">Italy</option>
+                <option value="France">France</option>
             </select>
-            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"}>
+            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"} onChange = {onSearchType}>
                 <option value={"DEFAULT"}>Type</option>
-                <option value="1">Specials</option>
-                <option value="2">Sport Cars</option>
-                <option value="3">Family Cars</option>
+                <option value="Special Cars">Special Cars</option>
+                <option value="Sport Cars">Sport Cars</option>
+                <option value="Family Cars">Family Cars</option>
             </select>
-            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"}>
+            <select className="form-select" aria-label="Default select example" defaultValue={"DEFAULT"} onChange = {onSearchCondition}>
                 <option value={"DEFAULT"}>Condition</option>
-                <option value="1">New</option>
-                <option value="2">Used</option>
+                <option value="New">New</option>
+                <option value="Used">Used</option>
             </select>
         </div>
     );

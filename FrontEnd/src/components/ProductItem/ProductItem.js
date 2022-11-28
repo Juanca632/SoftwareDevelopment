@@ -5,10 +5,9 @@ import { Link } from "react-router-dom"
 
 
 const ProductItem = ({ car }) => {
-
     return (
         <div className="ProductItem">
-			<div className='div-img'>
+			<div className='div-img' >
 				<img src={car.img} alt={car.model}/>	
 			</div>
 			<div className="product-info">

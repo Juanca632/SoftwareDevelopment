@@ -7,8 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-right: 2%;
-    background-color: var(--text-input-field);
+    background-color:#F4F5F8;
     
 }
 .settings-bar-link{

@@ -41,6 +41,7 @@ const AddNewCar = () => {
           console.log(response);
         })
         alert("New Car Created");
+        window.location.href="/"
       }
       
     }

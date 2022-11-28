@@ -8,6 +8,7 @@ import { NotFound } from '../Pages/NotFound/NotFound';
 import { CarDetails } from '../Pages/CarDetails/CarDetails';
 import { General } from '../Pages/General/General';
 import { AddNewCar } from '../Pages/AddNewCar/AddNewCar';
+import { CarsOwned } from '../Pages/CarsOwned/CarsOwned';
 
 const App = () => {
 	return (
@@ -20,6 +21,7 @@ const App = () => {
             <Route exact path="/cars/:slug" element={<CarDetails/>} /> 
             <Route exact path="/my-account/general/:slug" element={<General/>} /> 
             <Route exact path="/my-account/add-new-car/:slug" element={<AddNewCar/>} /> 
+            <Route exact path="/my-account/cars-owned/:slug" element={<CarsOwned/>} /> 
             <Route exact path="*" element={<NotFound/>} /> 
           </Routes>
         </Layout>

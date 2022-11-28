@@ -1,6 +1,13 @@
-.CarDetails{
+.div-cardetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    padding-top: 60px;
+    padding-top: 56px;
+}
+.CarDetails{ 
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,4 +110,17 @@
 .purchase-problem span{
     cursor: pointer;
     color: var(--orange);
+}
+.cardetails-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    height: 56px;
+    width: 100%;
+    background-color: var(--dark);
+    color: var(--white);
+}
+h6{
+    margin: 0;
 }
