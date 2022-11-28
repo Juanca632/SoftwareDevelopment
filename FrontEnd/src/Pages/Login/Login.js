@@ -4,6 +4,7 @@ import { LoginSignupHome } from '../../containers/LoginSignupHome/LoginSignupHom
 import { useGetProducts } from '../../hooks/useGetProducts';
 import { Link } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import Swal from "sweetalert2";
 
 const API = "http://localhost:8000/users";
 const cookies = new Cookies();
@@ -25,14 +26,29 @@ const Login = () => {
       }
       const userData = users.find(user => (user.email === data.email) && (user.password === data.password));
       if(userData == undefined){
-        alert("There was an Error, try again");
+        
+        Swal.fire({
+          title: "There was an error",
+          text: "Email or password are incorrect, try again",
+          icon: "error",
+          confirmButtonColor: "#343a40"
+        })
       }
       else{
         cookies.set("id", userData.user_id, {path: "/"});
         cookies.set("name", userData.name, {path: "/"});
         cookies.set("email", userData.email, {path: "/"});
-        alert(`You have succesfully logged in, welcome ${userData.name}`);
-        window.location.href="/";
+        Swal.fire({
+          title: `Welcome ${userData.name}`,
+          text: "You have succesfully logged in",
+          icon: "success",
+          confirmButtonColor: "#343a40"
+        }).then(response => {
+          if(response.isConfirmed){
+
+            window.location.href="/";
+          }
+        })
       }
     }
 

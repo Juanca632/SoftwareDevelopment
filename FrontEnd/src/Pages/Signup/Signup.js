@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { LoginSignupHome } from '../../containers/LoginSignupHome/LoginSignupHome';
 import axios from 'axios';
 import "./Signup.css";
+import Swal from "sweetalert2";
 
 const API = "http://localhost:8000/signup";
 
@@ -19,14 +20,26 @@ const Signup = () => {
         password: formData.get("password")
       }
       if(formData.get("name") == "" || formData.get("email") == "" || formData.get("password") == ""){
-        alert("Complete all the fields");
+        Swal.fire({
+          title: "There was an error",
+          text: "Complete all the fields",
+          icon: "error",
+          confirmButtonColor: "#343a40"
+        })
       }else{
         axios.post(API, data)
         .then( response =>{
           console.log(response);
         })
-        alert("New User Created");
-        window.location.href="./login";
+        Swal.fire({
+          title: `New user created`,
+          icon: "success",
+          confirmButtonColor: "#343a40"
+        }).then(response => {
+          if(response.isConfirmed){
+            window.location.href="/login";
+          }
+        })
       }
       
     }
