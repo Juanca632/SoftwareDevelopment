@@ -11,7 +11,8 @@ app = FastAPI()
 
 
 origins = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://localhost:3000/cars/:slug"
 ]
 app.add_middleware(
     CORSMiddleware,

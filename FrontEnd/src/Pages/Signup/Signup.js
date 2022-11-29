@@ -3,6 +3,7 @@ import { LoginSignupHome } from '../../containers/LoginSignupHome/LoginSignupHom
 import axios from 'axios';
 import "./Signup.css";
 import Swal from "sweetalert2";
+import md5 from "md5";
 
 const API = "http://localhost:8000/signup";
 
@@ -17,7 +18,7 @@ const Signup = () => {
         user_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
         name: formData.get("name"),
         email: formData.get("email"),
-        password: formData.get("password")
+        password: md5(formData.get("password"))
       }
       if(formData.get("name") == "" || formData.get("email") == "" || formData.get("password") == ""){
         Swal.fire({

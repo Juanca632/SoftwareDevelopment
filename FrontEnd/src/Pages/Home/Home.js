@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <React.Fragment>
             <Banner/>
-            <ProductList />
+            <ProductList/>
             <Footer/>
         </React.Fragment>
     );

@@ -5,6 +5,7 @@ import { useGetProducts } from '../../hooks/useGetProducts';
 import { Link } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import Swal from "sweetalert2";
+import md5 from 'md5';
 
 const API = "http://localhost:8000/users";
 const cookies = new Cookies();
@@ -22,7 +23,7 @@ const Login = () => {
       const formData = new FormData(form.current);
       const data = {
         email: formData.get("email"),
-        password: formData.get("password")
+        password: md5(formData.get("password"))
       }
       const userData = users.find(user => (user.email === data.email) && (user.password === data.password));
       if(userData == undefined){

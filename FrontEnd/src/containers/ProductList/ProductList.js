@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ProductList.css";
 import { ProductItem } from '../../components/ProductItem/ProductItem';
 import { useGetProducts } from '../../hooks/useGetProducts';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { CarDetails } from '../../Pages/CarDetails/CarDetails';
 
 const API = "http://localhost:8000";
 
@@ -10,12 +11,19 @@ let cars;
 
 const ProductList = () => {
 
+
+	
+
 	const [searchWeight, setSearchWeight] = useState("DEFAULT");
 	const [searchCountry, setSearchCountry] = useState("DEFAULT");
 	const [searchType, setSearchType] = useState("DEFAULT");
 	const [searchCondition, setSearchCondition] = useState("DEFAULT");
 
     cars = useGetProducts(API);
+	useEffect(() => {
+		const carListAPI = JSON.stringify(cars);
+		localStorage.setItem("carList", carListAPI);
+	})
 
 	var intersect = function(nums1, nums2) {
 		//  nums1 = [1,2,2,1], nums2 = [2,2]
@@ -118,8 +126,6 @@ const ProductList = () => {
 	}
 	
 
-	
-
     return (
         <section className="main-container" id='main-container'>
 			<h2 className='find-your-car'>FIND YOUR CAR</h2>
@@ -130,10 +136,11 @@ const ProductList = () => {
 			/>
 			<div className="ProductList ">
 				{carsSearched.map(car => (
-					<ProductItem car={car} key={car.car_id} />
+					<ProductItem car={car} key={car.car_id}/>
 				))}
 				
 			</div>
+			
 		</section>
     );
 }

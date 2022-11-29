@@ -87,6 +87,7 @@
 .purchase-button:hover{
     transform: scale(110%);
 }
+
 .contact-button {
     box-sizing: border-box;
     border: 1px solid var(--orange);
@@ -123,4 +124,14 @@
 }
 h6{
     margin: 0;
+}
+.disabled{
+    filter: grayscale(100%);
+}
+.disabled:hover{
+    transform: scale(100%);
+    cursor: initial;
+}
+.display-none{
+    display: none;
 }
