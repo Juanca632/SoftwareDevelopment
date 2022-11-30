@@ -2,12 +2,19 @@ import React from 'react';
 import "./ProductItem.css";
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2";
-import { CarDetails } from '../../Pages/CarDetails/CarDetails';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+const API = "http://localhost:8000/";
 
 
 
 const ProductItem = ({ car, deleteUpdate }) => {
 
+	function deleteCar(){
+		axios.delete(`${API}${car.car_id}`);
+	}
 
 	function deleteUpdateFunction(){
 		Swal.fire({
@@ -29,6 +36,22 @@ const ProductItem = ({ car, deleteUpdate }) => {
 				showCancelButton: true,
 				confirmButtonText: 'Ok',
 				confirmButtonColor: "#DC3741",
+			  }).then((result) => {
+				  if(result.isConfirmed){
+					Swal.fire({
+						title: `You have succesfully deleted this ${car.model.toUpperCase()}`,
+						icon: "success",
+						confirmButtonColor: "#343a40"
+					  }).then((result) =>{
+						if(result.isConfirmed){
+							deleteCar();
+							window.location.reload();
+						}
+					  })
+					  
+					  
+					  //window.location.href=`/my-account/cars-owned/${cookies.get("id")}`;
+				  }
 			  })
 			}
 		  })

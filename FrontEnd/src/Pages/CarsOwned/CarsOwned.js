@@ -19,12 +19,14 @@ const CarsOwned = () => {
 	})
     const deleteUpdate = true;
 
+    const carsActive = cars.filter(car => car.active === "true");
+
     return (
         <div className='cars-owned'>
             <h1>Cars Owned</h1>
             <div className="ProductList-owned">
                 
-				{cars.map(car => (
+				{carsActive.map(car => (
 					(car.seller.user_id === cookies.get("id")) && <ProductItem car={car} key={car.car_id} deleteUpdate={deleteUpdate}/>
 				))}
 				

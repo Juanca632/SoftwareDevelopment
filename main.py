@@ -39,6 +39,7 @@ class UserRegister(User):
 
 class Car(BaseModel):
     car_id: UUID = Field(...)
+    active: str = Field(...)
     model: str = Field(..., min_length=1, max_length=256)
     img: str = Field(...)
     img1: str = Field(...)
@@ -63,22 +64,7 @@ class Car(BaseModel):
     tags = ["Users"]
     )
 def signup(user: UserRegister = Body(...)):
-    """
-    SIGN UP
 
-    This path operation register a user on the app
-
-    Parameters: 
-        - Request body parameters
-            - user: UserRegister
-    
-    Returns a json with the basic user information:
-        - user_id: UUID
-        - email: Emailstr
-        - first_name: str
-        - last_name: str
-        - birth_date: date
-    """
     with open("users.json","r+",encoding="utf-8") as f:
         results = json.loads(f.read())
 
@@ -115,36 +101,12 @@ def login():
     tags=["Cars"]
     )
 def home():
-    """
-    SHOW Cars   
 
-    This path operation show all cars on the app
-
-    Parameters:
-        -None
-
-    Returns a JSON list with all cars on the app, with the following keys:
-        - car_id: UUID
-        - content: str
-        - created_at: datetime
-        - updated_at: Optional[datetime]
-        - by: User 
-    """
     with open("cars.json","r",encoding="utf-8") as f:
         results = json.loads(f.read())
         return results
 
 #SELLER MODE
-
-# @app.get(
-#     path="/sell",
-#     response_model=List[Car],
-#     status_code=status.HTTP_200_OK,
-#     summary="Show my Cars",
-#     tags=["Cars"]
-# )
-# def myCars():
-#     pass
 
 @app.post(
     path="/post",
@@ -155,26 +117,11 @@ def home():
 )
 def post(car: Car = Body(...)):
 
-    """
-    POST A CAR
-
-    This path operation post a Car on the app
-
-    Parameters: 
-        - Request body parameters
-            - car: Car
-    
-    Returns a json with the basic tweet information:
-        - car_id: UUID
-        - content: str
-        - created_at: datetime
-        - updated_at: Optional[datetime]
-        - by: User 
-    """
     with open("cars.json","r+",encoding="utf-8") as f:
         results = json.loads(f.read())
         car_dict = car.dict()
         car_dict["car_id"] = str(uuid.uuid1())
+        car_dict["active"] = str(car_dict["active"])
         car_dict["model"] = str(car_dict["model"])
         car_dict["img"] = str(car_dict["img"])
         car_dict["img1"] = "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -198,25 +145,70 @@ def post(car: Car = Body(...)):
         f.write(json.dumps(results))
         return car_dict
 
-# @app.put(
-#     path="/{Car_id}/update",
-#     response_model=Car,
-#     status_code=status.HTTP_200_OK,
-#     summary="Update a Car",
-#     tags=["Cars"]
-# )
-# def updateCar():
-#     pass
+@app.delete(
+    path="/{car_id}",
+    response_model=str,
+    status_code=status.HTTP_200_OK,
+    summary="Delete a Car",
+    tags=["Cars"]
+)
+def deleteCar(car_id: str):
+    with open("cars.json","r+",encoding="utf-8") as f:
+        results = json.loads(f.read())
+        x = -1
+        index = 0
+        for i in results:
+            x = x + 1
+            if(i["car_id"] == car_id):
+                index = x
+        results[index]["active"] = "false"
+        f.seek(0)
+        f.write(json.dumps(results))
+        return str(results)
 
-# @app.delete(
-#     path="/{Car_id}/delete",
-#     response_model=Car,
-#     status_code=status.HTTP_200_OK,
-#     summary="Delete a Car",
-#     tags=["Cars"]
-# )
-# def deleteCar():
-#     pass
+@app.put(
+    path="/post/{car_id}",
+    response_model=str,
+    status_code=status.HTTP_200_OK,
+    summary="Update a Car",
+    tags=["Cars"]
+)
+def updateCar(car_id:str, car: Car):
+    with open("cars.json","r+",encoding="utf-8") as f:
+        results = json.loads(f.read())
+        x = -1
+        index = 0
+        for i in results:
+            x = x + 1
+            if(i["car_id"] == car_id):
+                index = x
+        car_dict = car.dict()
 
-#BACKEND
-#BACKEND
+        car_dict["car_id"] = str(car_dict["car_id"])
+        car_dict["active"] = str(car_dict["active"])
+        car_dict["model"] = str(car_dict["model"])
+        car_dict["img"] = str(car_dict["img"])
+        car_dict["img1"] = "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        car_dict["img2"] = "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        car_dict["img3"] = "https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        car_dict["price"] = float(car_dict["price"])
+        car_dict["year"] = int(car_dict["year"])
+        car_dict["condition"] = str(car_dict["condition"])
+        car_dict["type"] = str(car_dict["type"])
+        car_dict["country"] = str(car_dict["country"])
+        car_dict["weight"] = str(car_dict["weight"])
+        car_dict["seller"]["user_id"] = str(car_dict["seller"]["user_id"])
+        car_dict["seller"]["email"] = str(car_dict["seller"]["email"])
+        car_dict["seller"]["name"] = str(car_dict["seller"]["name"])
+
+        results[index] = car_dict
+        # results[index]["model"] = car_dict["model"]
+        # results[index]["price"] = car_dict["price"]
+        # results[index]["year"] = car_dict["year"]
+        # results[index]["condition"] = car_dict["condition"]
+        # results[index]["type"] = car_dict["type"]
+        # results[index]["country"] = car_dict["country"]
+        # results[index]["weight"] = car_dict["weight"]
+        f.seek(0)
+        f.write(json.dumps(results))
+        return str(results)

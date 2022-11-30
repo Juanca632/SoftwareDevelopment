@@ -124,6 +124,8 @@ const ProductList = () => {
 	if(searchCondition.length > 0){
 		carsSearched = intersect(carsSearched,searchedCondition);
 	}
+
+	const carsSearchedActive = carsSearched.filter(car => car.active === "true");
 	
 
     return (
@@ -135,7 +137,7 @@ const ProductList = () => {
 			searchCondition={searchCondition} setSearchCondition={setSearchCondition}
 			/>
 			<div className="ProductList ">
-				{carsSearched.map(car => (
+				{carsSearchedActive.map(car => (
 					<ProductItem car={car} key={car.car_id}/>
 				))}
 				

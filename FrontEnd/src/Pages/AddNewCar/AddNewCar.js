@@ -16,6 +16,7 @@ const AddNewCar = () => {
       const formData = new FormData(form.current);
       const data = {
         car_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        active: "true",
         model: formData.get("model"),
         img: formData.get("img"),
         img1: "",
@@ -41,6 +42,7 @@ const AddNewCar = () => {
           console.log(response);
         })
         alert("New Car Created");
+        window.location.href=`/my-account/cars-owned/${cookies.get("id")}`;
 
       }
       
