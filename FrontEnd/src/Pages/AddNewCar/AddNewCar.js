@@ -3,6 +3,7 @@ import "./AddNewCar.css"
 import { SettingsNavBar } from '../../containers/SettingsNavBar/SettingsNavBar';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import Swal from "sweetalert2";
 
 const cookies = new Cookies();
 const API = "http://localhost:8000/post";
@@ -41,8 +42,13 @@ const AddNewCar = () => {
         .then( response =>{
           console.log(response);
         })
-        alert("New Car Created");
-        window.location.href=`/my-account/cars-owned/${cookies.get("id")}`;
+        Swal.fire({
+          title: `You have Created a new car`,
+          icon: "success",
+          confirmButtonColor: "#343a40"
+        }).then((result) =>{
+          window.location.href=`/my-account/cars-owned/${cookies.get("id")}`;
+        })
 
       }
       

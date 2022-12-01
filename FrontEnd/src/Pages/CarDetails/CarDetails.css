@@ -135,3 +135,25 @@ h6{
 .display-none{
     display: none;
 }
+@media (max-width: 800px) {
+	.CarDetails{
+        flex-direction: column;
+    }
+    .details-content{
+        width: 95%;
+    }
+}
+@media (max-width: 650px) {
+    .CarDetails{
+        justify-content: space-evenly;
+    }
+	.details-img{
+        width: 70%;
+    }
+    .purchase-button{
+        width: 45%;
+    }
+    .contact-button{
+        width: 45%;
+    }
+}

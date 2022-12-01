@@ -9,6 +9,7 @@ import { CarDetails } from '../Pages/CarDetails/CarDetails';
 import { General } from '../Pages/General/General';
 import { AddNewCar } from '../Pages/AddNewCar/AddNewCar';
 import { CarsOwned } from '../Pages/CarsOwned/CarsOwned';
+import { CarsPurchased } from "../Pages/CarsPurchased/CarsPurchased"
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
             <Route exact path="/my-account/general/:slug" element={<General/>} /> 
             <Route exact path="/my-account/add-new-car/:slug" element={<AddNewCar/>} /> 
             <Route exact path="/my-account/cars-owned/:slug" element={<CarsOwned/>} /> 
+            <Route exact path="/my-account/purchased-cars/:slug" element={<CarsPurchased/>} /> 
             <Route exact path="*" element={<NotFound/>} /> 
           </Routes>
         </Layout>

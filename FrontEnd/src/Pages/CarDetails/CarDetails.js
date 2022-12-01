@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "./CarDetails.css";
 import { cars } from '../../containers/ProductList/ProductList';
 import Cookies from 'universal-cookie';
 import { useGetProducts } from '../../hooks/useGetProducts';
+import Swal from 'sweetalert2';
+import { ModalShipping } from '../../components/ModalShipping/ModalShipping';
+import { Invoice } from '../../components/Invoice/Invoice';
+
 
 const API = "http://localhost:8000/";
 const cookies = new Cookies();
 
 const CarDetails = () => {
+
+    const [openModal, setOpenModal] = useState(false);
+    const [openInvoice, setOpenInvoice] = useState(false);
+    const [priceShipping, setPriceShipping] = useState(0.0);
 
     const { slug } = useParams();
     let carList = JSON.parse(localStorage.getItem("carList"));
@@ -18,7 +26,19 @@ const CarDetails = () => {
     
 
     function purchase(){
-        alert("PURCHASE");
+        if(cookies.get("id") ==undefined){
+            Swal.fire({
+                title: "Log in or create an account",
+                icon: "warning",
+                confirmButtonColor: "#343a40"
+            }).then(response => {
+                if(response.isConfirmed){
+                    window.location.href="/login";
+                }
+            })
+        }else{
+            setOpenModal(true);
+        }
     }
     return (
 
@@ -76,7 +96,6 @@ const CarDetails = () => {
                                     type="submit"
                                     value="Contact"
                                     className="contact-button disabled"
-                                    onClick={purchase}
                                     disabled
                                 />
                                 </div>
@@ -93,7 +112,6 @@ const CarDetails = () => {
                                 type="submit"
                                 value="Contact"
                                 className="contact-button"
-                                onClick={purchase}
                             />
                             </div>
                             
@@ -103,9 +121,24 @@ const CarDetails = () => {
                     </div>
                     
                 </div>
+                {openModal && 
+                    <ModalShipping openModal={openModal} setOpenModal={setOpenModal} openInvoice={openInvoice} setOpenInvoice={setOpenInvoice}
+                    setPriceShipping={setPriceShipping} priceShipping={priceShipping}
+                    >
+                        
+                    </ModalShipping>
+                }
+                {openInvoice && 
+                    <Invoice openInvoice={openInvoice} setOpenInvoice={setOpenInvoice} carsDetails={carsDetails}
+                    setPriceShipping={setPriceShipping} priceShipping={priceShipping}
+                    >
+                        
+                    </Invoice>
+                }
                 <div className='cardetails-footer'>
                     <h6>© <span className='span-footer'>Auto Shop.</span> All Rights Reserved.</h6>
                 </div>
+
         </div>
 
     );

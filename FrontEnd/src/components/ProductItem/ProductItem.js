@@ -10,7 +10,7 @@ const API = "http://localhost:8000/";
 
 
 
-const ProductItem = ({ car, deleteUpdate }) => {
+const ProductItem = ({ car, deleteUpdate, purchasedCars }) => {
 
 	function deleteCar(){
 		axios.delete(`${API}${car.car_id}`);
@@ -28,7 +28,11 @@ const ProductItem = ({ car, deleteUpdate }) => {
 		  }).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-			  Swal.fire('Saved!', '', 'success')
+			  Swal.fire({
+				title: `You have succesfully edited this ${car.model.toUpperCase()}`,
+				icon: "success",
+				confirmButtonColor: "#343a40"
+			  })
 			} else if (result.isDenied) {
 			  Swal.fire({
 				title: `Are you sure you want to delete this ${car.model.toUpperCase()}?`,
@@ -43,10 +47,8 @@ const ProductItem = ({ car, deleteUpdate }) => {
 						icon: "success",
 						confirmButtonColor: "#343a40"
 					  }).then((result) =>{
-						if(result.isConfirmed){
 							deleteCar();
 							window.location.reload();
-						}
 					  })
 					  
 					  
@@ -71,7 +73,7 @@ const ProductItem = ({ car, deleteUpdate }) => {
 					<p className='car-info-categories'>{`${car.year} | ${car.type} | ${car.country} | ${car.weight} | ${car.condition}`}</p>
 				</div>
 	
-				<Link to={`/cars/${car.car_id}`} className='price'>${new Intl.NumberFormat("en-EN").format(car.price)}</Link>
+				{!purchasedCars && <Link to={`/cars/${car.car_id}`} className='price'>${new Intl.NumberFormat("en-EN").format(car.price)}</Link>}
 			</div>
 		</div>
     );

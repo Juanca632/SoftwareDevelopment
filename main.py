@@ -10,10 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 
-origins = [
-    "http://localhost:3000",
-    "http://localhost:3000/cars/:slug"
-]
+origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -40,7 +37,7 @@ class UserRegister(User):
 class Car(BaseModel):
     car_id: UUID = Field(...)
     active: str = Field(...)
-    model: str = Field(..., min_length=1, max_length=256)
+    model: str = Field(...)
     img: str = Field(...)
     img1: str = Field(...)
     img2: str = Field(...)
@@ -53,7 +50,8 @@ class Car(BaseModel):
     weight: str = Field(...)
     seller: User = Field(...)
 
-
+class CarPurchased(Car):
+    buyer: User = Field(...)
 #LOGING/SIGN UP PAGE
 
 @app.post(
@@ -137,9 +135,6 @@ def post(car: Car = Body(...)):
         car_dict["seller"]["email"] = str(car_dict["seller"]["email"])
         car_dict["seller"]["name"] = str(car_dict["seller"]["name"])
         
-        
-
-
         results.append(car_dict)
         f.seek(0)
         f.write(json.dumps(results))
@@ -166,24 +161,36 @@ def deleteCar(car_id: str):
         f.write(json.dumps(results))
         return str(results)
 
-@app.put(
-    path="/post/{car_id}",
-    response_model=str,
+
+
+#BUYER
+
+@app.get(
+    path="/cars/purchased",
+    response_model=List[CarPurchased],
     status_code=status.HTTP_200_OK,
-    summary="Update a Car",
+    summary="Show all Cars purchased",
+    tags=["Cars"]
+    )
+def carsPurchased():
+
+    with open("carsPurchased.json","r",encoding="utf-8") as f:
+        results = json.loads(f.read())
+        return results
+
+        
+@app.post(
+    path="/post/purchased",
+    response_model=CarPurchased,
+    status_code=status.HTTP_201_CREATED,
+    summary="Post a Car Purchased",
     tags=["Cars"]
 )
-def updateCar(car_id:str, car: Car):
-    with open("cars.json","r+",encoding="utf-8") as f:
-        results = json.loads(f.read())
-        x = -1
-        index = 0
-        for i in results:
-            x = x + 1
-            if(i["car_id"] == car_id):
-                index = x
-        car_dict = car.dict()
+def post(car: CarPurchased = Body(...)):
 
+    with open("carsPurchased.json","r+",encoding="utf-8") as f:
+        results = json.loads(f.read())
+        car_dict = car.dict()
         car_dict["car_id"] = str(car_dict["car_id"])
         car_dict["active"] = str(car_dict["active"])
         car_dict["model"] = str(car_dict["model"])
@@ -200,15 +207,11 @@ def updateCar(car_id:str, car: Car):
         car_dict["seller"]["user_id"] = str(car_dict["seller"]["user_id"])
         car_dict["seller"]["email"] = str(car_dict["seller"]["email"])
         car_dict["seller"]["name"] = str(car_dict["seller"]["name"])
-
-        results[index] = car_dict
-        # results[index]["model"] = car_dict["model"]
-        # results[index]["price"] = car_dict["price"]
-        # results[index]["year"] = car_dict["year"]
-        # results[index]["condition"] = car_dict["condition"]
-        # results[index]["type"] = car_dict["type"]
-        # results[index]["country"] = car_dict["country"]
-        # results[index]["weight"] = car_dict["weight"]
+        car_dict["buyer"]["user_id"] = str(car_dict["buyer"]["user_id"])
+        car_dict["buyer"]["email"] = str(car_dict["buyer"]["email"])
+        car_dict["buyer"]["name"] = str(car_dict["buyer"]["name"])
+        
+        results.append(car_dict)
         f.seek(0)
         f.write(json.dumps(results))
-        return str(results)
+        return car_dict

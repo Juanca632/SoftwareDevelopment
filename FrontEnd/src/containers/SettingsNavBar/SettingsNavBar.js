@@ -15,7 +15,6 @@ const SettingsNavBar = () => {
             <Link className='settings-bar-link' to={`/my-account/purchased-cars/${cookies.get("id")}`}>Purchased</Link>
             <span className='settings-bar-span'>More Options</span>
             <Link className='settings-bar-link' to={`/my-account/add-new-car/${cookies.get("id")}`}>Add New Car</Link>
-            <Link className='settings-bar-link' to={`/my-account/delete-car/${cookies.get("id")}`}>Delete Car</Link>
         </div>
     );
 }
